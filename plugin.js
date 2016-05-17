@@ -76,7 +76,7 @@ function pluginInit(editor) {
  *  Author: Radoslav Petkov
  *
  *  Variables stored into the editor's object:
- *  {ckeditor.dom.element} editor.layoutmanager.selectedLayout.wrappet The selected widget wrapper element.
+ *  {ckeditor.dom.element} editor.layoutmanager.selectedLayout.wrapper The selected widget wrapper element.
  *  {ckeditor.dom.element} editor.layoutmanager.selectedLayout.widget The selected widget instance.
  */
 function LayoutManager(editor) {
@@ -208,6 +208,7 @@ LayoutManager.prototype.changeLayoutAction = function (newLayoutName) {
   attributeTemplate.push('col-sm-{size}');
   attributeTemplate.push('col-md-{size}');
   attributeTemplate.push('col-lg-{size}');
+  attributeTemplate.push('span-{size}');
   var pattern = /col-(xs|sm|md|lg)-/;
 
   if (newColumnsCount <= columnsCount) {
@@ -290,6 +291,8 @@ LayoutManager.prototype.createWidgetDefinition = function (_template, _editables
         configToolbar: {
           defaultButtons: {
             edit: {
+              label: "edit",
+              icon: '',
               onClick: function () {
                 this.editor.layoutmanager.selectedWidget = this;
 
@@ -347,38 +350,38 @@ LayoutManager.prototype.removeLayoutWidget = function () {
  */
 function LayoutBuilder() {
   var defaultLayoutTemplates = [];
-  defaultLayoutTemplates.push(new CKEDITOR.template('<div class="layoutmanager">'+
-        '<div class="container-fluid layout-container">'+
-            '<div class="row layout-row" >'+
-                '<div class="col-xs-{size1} col-sm-{size1} col-md-{size1} col-lg-{size1} layout-column">'+
-                    '<div class="layout-column-one layout-column-editable"><p></p></div>'+
+  defaultLayoutTemplates.push(new CKEDITOR.template('<div layout-component="1" class="layoutmanager">'+
+        '<div layout-component="1" class="container-fluid layout-container">'+
+            '<div layout-component="1" class="row-fluid layout-row" >'+
+                '<div  layout-component="1" class="span{size1} col-xs-{size1} col-sm-{size1} col-md-{size1} col-lg-{size1} layout-column">'+
+                    '<div layout-component="1" class="layout-column-one layout-column-editable"><p></p></div>'+
                 '</div>'+
             '</div>'+
         '</div>'+
     '</div>'));
-  defaultLayoutTemplates.push(new CKEDITOR.template('<div class="layoutmanager">'+
-        '<div class="container-fluid layout-container">'+
-            '<div class="row layout-row">'+
-                '<div class="col-xs-{size1} col-sm-{size1} col-md-{size1} col-lg-{size1} layout-column ">'+
-                    '<div class="layout-column-one layout-column-editable"><p></p></div>'+
+  defaultLayoutTemplates.push(new CKEDITOR.template('<div layout-component="1" class="layoutmanager">'+
+        '<div layout-component="1" class="container-fluid layout-container">'+
+            '<div layout-component="1" class="row-fluid layout-row">'+
+                '<div layout-component="1" class="span{size1} col-xs-{size1} col-sm-{size1} col-md-{size1} col-lg-{size1} layout-column ">'+
+                    '<div layout-component="1" class="layout-column-one layout-column-editable"><p></p></div>'+
                 '</div>'+
-                '<div class="col-xs-{size2} col-sm-{size2} col-md-{size2} col-lg-{size2} layout-column">'+
-                    '<div class="layout-column-two layout-column-editable"><p></p></div>'+
+                '<div layout-component="1" class="span{size2} col-xs-{size2} col-sm-{size2} col-md-{size2} col-lg-{size2} layout-column">'+
+                    '<div layout-component="1" class="layout-column-two layout-column-editable"><p></p></div>'+
                 '</div>'+
             '</div>'+
         '</div>'+
     '</div>'));
-  defaultLayoutTemplates.push(new CKEDITOR.template('<div class="layoutmanager">'+
-        '<div class="container-fluid layout-container">'+
-            '<div class="row layout-row">'+
-                '<div class="col-xs-{size1} col-sm-{size1} col-md-{size1} col-lg-{size1} layout-column">'+
-                    '<div class="layout-column-one layout-column-editable"><p></p></div>'+
+  defaultLayoutTemplates.push(new CKEDITOR.template('<div layout-component="1" class="layoutmanager">'+
+        '<div layout-component="1" class="container-fluid layout-container">'+
+            '<div layout-component="1" class="row-fluid layout-row">'+
+                '<div layout-component="1" class="span{size1} col-xs-{size1} col-sm-{size1} col-md-{size1} col-lg-{size1} layout-column">'+
+                    '<div layout-component="1" class="layout-column-one layout-column-editable"><p></p></div>'+
                 '</div>'+
-                '<div class="col-xs-{size2} col-sm-{size2} col-md-{size2} col-lg-{size2} layout-column">'+
-                    '<div class="layout-column-two layout-column-editable"><p></p></div>'+
+                '<div layout-component="1" class="span{size2} col-xs-{size2} col-sm-{size2} col-md-{size2} col-lg-{size2} layout-column">'+
+                    '<div layout-component="1" class="layout-column-two layout-column-editable"><p></p></div>'+
                 '</div>'+
-                '<div class="col-xs-{size3} col-sm-{size3} col-md-{size3} col-lg-{size3} layout-column">'+
-                    '<div class="layout-column-three layout-column-editable"><p></p></div>'+
+                '<div layout-component="1" class="span{size3} col-xs-{size3} col-sm-{size3} col-md-{size3} col-lg-{size3} layout-column">'+
+                    '<div layout-component="1" class="layout-column-three layout-column-editable"><p></p></div>'+
                 '</div>'+
             '</div>'+
         '</div>'+
